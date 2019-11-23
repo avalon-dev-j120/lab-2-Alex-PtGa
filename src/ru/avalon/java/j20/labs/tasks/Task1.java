@@ -1,15 +1,18 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.io.ByteArrayOutputStream;
 import ru.avalon.java.j20.labs.Task;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Задание №1
  *
- * <p>Тема: "Потоковый ввод-вывод. Чтение и запись данных
- * в двоичном режиме".
+ * <p>
+ * Тема: "Потоковый ввод-вывод. Чтение и запись данных в двоичном режиме".
  */
 public class Task1 implements Task {
 
@@ -46,20 +49,47 @@ public class Task1 implements Task {
     /**
      * Выполняет чтение указанного файла в двоичном режиме.
      *
-     * <p>Весь текст файла возвращается в виде одного
-     * экземпляра типа {@link String}.
+     * <p>
+     * Весь текст файла возвращается в виде одного экземпляра типа
+     * {@link String}.
      *
      * @param file файл
      * @return содержимое файла в виде текста.
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private String read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+
+        InputStream inputSt = null;
+        ByteArrayOutputStream outputBy = null;
+ 
+// гарантия закрытия потоков
+        try {
+
+            inputSt = new FileInputStream(file);
+            outputBy = new ByteArrayOutputStream(127);
+            
+            byte[] buffer = new byte[127];
+            int len;
+            
+            while((len=inputSt.read(buffer)) !=-1) {
+                outputBy.write(buffer, 0, len);
+            }
+            byte[] bytes = outputBy.toByteArray();
+            
+            return new String(bytes);
+// гарантия закрытия потоков
+        } finally {
+            if (inputSt != null) {
+                inputSt.close();
+            }
+            if (outputBy != null) {
+                outputBy.close();
+            }
+        }
     }
 
     /**
-     * Выполняет запись текстоых данных в файл в двоичном
-     * режиме.
+     * Выполняет запись текстоых данных в файл в двоичном режиме.
      *
      * @param file файл
      * @param text текст
@@ -67,5 +97,6 @@ public class Task1 implements Task {
      */
     private void write(File file, String text) throws IOException {
         throw new UnsupportedOperationException("Not implemented yet!");
+    
     }
 }
