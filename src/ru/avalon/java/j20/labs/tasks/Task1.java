@@ -5,8 +5,10 @@ import ru.avalon.java.j20.labs.Task;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Задание №1
@@ -59,32 +61,23 @@ public class Task1 implements Task {
      */
     private String read(File file) throws IOException {
 
-        InputStream inputSt = null;
-        ByteArrayOutputStream outputBy = null;
- 
+        ByteArrayOutputStream outputBy;
+        System.out.println("method read");
 // гарантия закрытия потоков
-        try {
-
-            inputSt = new FileInputStream(file);
+        try (InputStream inputSt = new FileInputStream(file)) {
             outputBy = new ByteArrayOutputStream(127);
-            
             byte[] buffer = new byte[127];
             int len;
-            
-            while((len=inputSt.read(buffer)) !=-1) {
+
+            while ((len = inputSt.read(buffer)) != -1) {
                 outputBy.write(buffer, 0, len);
             }
             byte[] bytes = outputBy.toByteArray();
-            
+
             return new String(bytes);
 // гарантия закрытия потоков
         } finally {
-            if (inputSt != null) {
-                inputSt.close();
-            }
-            if (outputBy != null) {
-                outputBy.close();
-            }
+
         }
     }
 
@@ -96,7 +89,8 @@ public class Task1 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, String text) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
-    
+        try (OutputStream outputSt = new FileOutputStream(file)) {
+            outputSt.write(text.getBytes());
+        }
     }
 }

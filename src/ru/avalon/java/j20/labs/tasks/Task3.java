@@ -1,16 +1,23 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.io.BufferedReader;
 import ru.avalon.java.j20.labs.Task;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
+import ru.avalon.java.j20.labs.models.Country;
 
 /**
  * Задание №3
  *
- * <p>Тема: "Потоковый ввод-вывод. Чтение и запись данных с
- * использованием буферизованных типов данных".
+ * <p>
+ * Тема: "Потоковый ввод-вывод. Чтение и запись данных с использованием
+ * буферизованных типов данных".
  */
 public class Task3 implements Task {
 
@@ -44,28 +51,50 @@ public class Task3 implements Task {
     /**
      * Выполняет чтение указанного файла в коллекцию строк.
      *
-     * <p>Каждый элемент коллекции представляет собой
-     * отдельную строку файла.
+     * <p>
+     * Каждый элемент коллекции представляет собой отдельную строку файла.
      *
      * @param file файл
      * @return содержимое файла в виде текста.
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private Collection<String> read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+        Collection<String> collection = new ArrayList<>();
+// гарантия закрытия потоков
+        try (FileReader fR = new FileReader(file);
+                BufferedReader bR = new BufferedReader(fR)) {
+// создание строки для считывания
+            String s;
+
+            while ((s = bR.readLine()) != null) {
+
+                collection.add(s);
+                //  System.out.println(s);
+            }
+        }
+        return collection;
     }
 
     /**
      * Выполняет запись коллекции строковых элементов в файл.
      *
-     * <p>Каждый элемент коллекции должен быть записан в
-     * файл отдельной строкой.
+     * <p>
+     * Каждый элемент коллекции должен быть записан в файл отдельной строкой.
      *
      * @param file файл
      * @param collection коллекция строк
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, Collection<String> collection) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
+
+// гарантия закрытия потоков
+        try (PrintWriter pW = new PrintWriter(new FileWriter(file))) {
+            for (String s: collection) {
+                // проверим  что пишет:
+                // System.out.println(((ArrayList)collection).get(i));
+                pW.write(s + System.lineSeparator());
+            // lineSeparator - разделитель строк
+            }
+        }
     }
 }
