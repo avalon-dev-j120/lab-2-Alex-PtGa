@@ -9,7 +9,8 @@ import java.util.ResourceBundle;
 /**
  * Задание №5
  *
- * <p>Тема: "Потоковый ввод-вывод. Чтение локализованных ресурсов".
+ * <p>
+ * Тема: "Потоковый ввод-вывод. Чтение локализованных ресурсов".
  */
 public class Task5 implements Task {
 
@@ -34,14 +35,16 @@ public class Task5 implements Task {
     }
 
     /**
-     * Выполняет чтение локализованных ресурсов с использованием
-     * локализации по умолчанию.
+     * Выполняет чтение локализованных ресурсов с использованием локализации по
+     * умолчанию.
      *
      * @param path путь к файлу ресурсов
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path) {
-        throw new UnsupportedOperationException("Not implement yet!");
+        ResourceBundle mybundle = ResourceBundle.getBundle(path);
+
+        return mybundle;
     }
 
     /**
@@ -51,6 +54,19 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path, Locale locale) {
-        throw new UnsupportedOperationException("Not implement yet!");
+      /**
+       * ResourceBundle.ControlКласс предоставляет информацию ,
+       * необходимую для выполнения пучка процесса загрузки с помощью 
+       * getBundle фабричных методов , которые принимают ResourceBundle.Control экземпляр. 
+       * Вы можете реализовать свой собственный подкласс, чтобы включить нестандартные форматы
+       * пакетов ресурсов, изменить стратегию поиска или определить параметры кэширования.
+       * Обратитесь к описанию класса и getBundle фабричного метода для деталей.
+       */
+      
+  
+
+        ResourceBundle mybundle = ResourceBundle.getBundle(path, ru);
+        
+        return mybundle;
     }
 }

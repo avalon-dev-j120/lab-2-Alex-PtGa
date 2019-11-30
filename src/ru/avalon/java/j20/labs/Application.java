@@ -37,7 +37,7 @@ public class Application {
          * порядок и/или закомментировать любой из элементов
          * массива.
          */
-       // for (Task task : tasks) task.run();
-       tasks[1].run();    // выводить отдельные задачи
+    //    for (Task task : tasks) task.run();
+      tasks[3].run();    // выводить отдельные задачи
     }
 }
