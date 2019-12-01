@@ -53,7 +53,6 @@ public class Task4 implements Task {
             properties.load(stream);
 
         }
-        
         return properties;
     }
 }

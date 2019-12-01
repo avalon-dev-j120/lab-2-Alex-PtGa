@@ -1,11 +1,16 @@
 package ru.avalon.java.j20.labs.models;
 
+import java.io.BufferedReader;
 import java.text.ParseException;
 
 /**
  * Модель представления о стране.
  */
 public class Country {
+
+    public static String valueOf(BufferedReader bR) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     /**
      * Код страны.
      */
@@ -47,20 +52,26 @@ public class Country {
     /*
      * TODO(Студент): для класса Country переопределить методы equals и hashCode
      */
-
     /**
-     * Возвращает экземпляр страны созданный из переданного
-     * текста в формате 'Код:Название'.
+     * Возвращает экземпляр страны созданный из переданного текста в формате
+     * 'Код:Название'.
      *
-     * @param text тектс в формате 'Код:Название'
+     * @param text текст в формате 'Код:Название'
      * @return новый экземпляр типа {@Link Country}.
-     * @throws ParseException в случае, если переданная строка
-     * имеет неверный формат.
+     * @throws ParseException в случае, если переданная строка имеет неверный
+     * формат.
      */
     public static Country valueOf(String text) throws ParseException {
         /*
          * TODO(Студент): Реализовать метод valueOf класса Country
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        Country strana;
+        String simbol = ":";
+         String text1 = code + simbol + name;
+        if (text.equals(text1)) // преобразование String в Country
+        {
+            strana = Country.valueOf(text);
+        }
+        return strana;
     }
 }
