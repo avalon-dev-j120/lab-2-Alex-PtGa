@@ -13,16 +13,26 @@ import java.util.ResourceBundle;
  * Тема: "Потоковый ввод-вывод. Чтение локализованных ресурсов".
  */
 public class Task5 implements Task {
-
+// dencode.com -> Unnicode Escape - получение кода строки, слова
     /**
      * {@inheritDoc}
      */
     @Override
     public void run() throws IOException {
-        String path = null;
-        Locale locale = null;
+       String path = "resources.strings.titles";
+       Locale locale = Locale.ENGLISH;
 
-        if (this.read(path) == this.read(path, locale)) {
+       ResourceBundle rB1 = read(path);
+       ResourceBundle rB2 = read(path, locale);
+       
+      String s1 = rB1.getString("menu.edit");
+      String s2 = rB2.getString("menu.edit");
+      
+      System.out.println(s1.toString());
+      System.out.println(s2.toString());
+            
+      
+        if ( s1 == null ? s2 == null : s1.equals(s2)) {
             System.out.println("Country true");
         } else {
             System.out.println("Country false");

@@ -38,6 +38,6 @@ public class Application {
          * массива.
          */
     //    for (Task task : tasks) task.run();
-      tasks[3].run();    // выводить отдельные задачи
+      tasks[5].run();    // выводить отдельные задачи
     }
 }

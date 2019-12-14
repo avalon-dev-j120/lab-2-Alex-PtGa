@@ -1,16 +1,13 @@
 package ru.avalon.java.j20.labs.models;
 
-import java.io.BufferedReader;
 import java.text.ParseException;
+import java.util.Objects;
 
 /**
  * Модель представления о стране.
  */
 public class Country {
 
-//    public static String valueOf(BufferedReader bR) {
-//    
-//    }
     /**
      * Код страны.
      */
@@ -49,9 +46,36 @@ public class Country {
         return name;
     }
 
-    /*
-     * TODO(Студент): для класса Country переопределить методы equals и hashCode
-     */
+    @Override
+    public int hashCode() {
+
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.code);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Country other = (Country) obj;
+        if (!Objects.equals(this.code, other.code)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Возвращает экземпляр страны созданный из переданного текста в формате
      * 'Код:Название'.
@@ -63,16 +87,32 @@ public class Country {
      */
     public static Country valueOf(String text) throws ParseException {
         /*
-         * TODO(Студент): Реализовать метод valueOf класса Country
+        * TODO(Студент): Реализовать метод valueOf класса Country
          */
+        //   Country strana = null;
 
-        Country strana = null;
-        String code = null, name = null;
-        String text1 = code + ":" + name;
-        if (text.equals(text1)) // преобразование String в Country
-        {
-            strana = Country.valueOf(text);
-        }
-        return strana;
+        String[] s = text.split(":", 2);
+        String code = s[0];
+        String name = s[1];
+
+        //Country country = new Country(s);
+        //  String text1 = code + ":" + name;
+        return new Country(code, name);
+    }
+
+    @Override
+    public String toString() {
+
+        return code + ":" + name;
     }
 }
+}
+
+
+
+
+
+
+
+
+      //  String code = null, name = null;

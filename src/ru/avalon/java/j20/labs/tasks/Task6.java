@@ -29,6 +29,7 @@ public class Task6 implements Task {
     public void run() throws IOException {
         File input = new File("assets/countries.txt");
         Collection<Country> countries = read(input);
+       
         for(Country c : countries) {
             System.out.println(c);
         }

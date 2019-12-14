@@ -25,9 +25,12 @@ public class Task4 implements Task {
      */
     @Override
     public void run() throws IOException {
-        Properties properties = read("resources/database");
+        Properties properties = read("resources/database.properties");
+       
+        System.out.println(properties.getProperty("db.oracle.driver.class"));
 
-        System.out.println(properties.toString());
+        //System.out.println(properties.getOrDefault("db.oracle.driver.class", oracle.jdbc.driver.OracleDriver));
+
 //      
         // stringPropertyNames() Возвращает набор ключей в этом списке свойств,
         // где ключ и его соответствующее значение являются строками, включая отдельные ключи 
@@ -51,13 +54,14 @@ public class Task4 implements Task {
     private Properties read(String path) throws IOException {
 
         Properties properties = new Properties();
-        try (InputStream stream = this.getClass().getResourceAsStream(path)) {
+
+        try (InputStream stream = ClassLoader.getSystemResourceAsStream(path))  {
 //        InputStream stream;
 //        stream = new FileInputStream(path);
             properties.load(stream);
-
-            return properties;
+            
         }
+        return properties;
     }
 // создадим экземпляр класса InputStream через загрузчик классов
 // вызвав метод для чтения ресурса с указанным именем из пути поиска, 
