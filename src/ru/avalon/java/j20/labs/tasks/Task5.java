@@ -19,6 +19,14 @@ public class Task5 implements Task {
      */
     @Override
     public void run() throws IOException {
+        String path = null;
+        Locale locale = null;
+
+        if (this.read(path) == this.read(path, locale)) {
+            System.out.println("Country true");
+        } else {
+            System.out.println("Country false");
+        }
         /*
          * TODO(Студент): Выполнить задание №5
          *
@@ -54,19 +62,17 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path, Locale locale) {
-      /**
-       * ResourceBundle.ControlКласс предоставляет информацию ,
-       * необходимую для выполнения пучка процесса загрузки с помощью 
-       * getBundle фабричных методов , которые принимают ResourceBundle.Control экземпляр. 
-       * Вы можете реализовать свой собственный подкласс, чтобы включить нестандартные форматы
-       * пакетов ресурсов, изменить стратегию поиска или определить параметры кэширования.
-       * Обратитесь к описанию класса и getBundle фабричного метода для деталей.
-       */
-      
-  
+        /**
+         * ResourceBundle.ControlКласс предоставляет информацию , необходимую
+         * для выполнения пучка процесса загрузки с помощью getBundle фабричных
+         * методов , которые принимают ResourceBundle.Control экземпляр. Вы
+         * можете реализовать свой собственный подкласс, чтобы включить
+         * нестандартные форматы пакетов ресурсов, изменить стратегию поиска или
+         * определить параметры кэширования. Обратитесь к описанию класса и
+         * getBundle фабричного метода для деталей.
+         */
+        ResourceBundle mybundle1 = ResourceBundle.getBundle(path, locale);
 
-        ResourceBundle mybundle = ResourceBundle.getBundle(path, ru);
-        
-        return mybundle;
+        return mybundle1;
     }
 }

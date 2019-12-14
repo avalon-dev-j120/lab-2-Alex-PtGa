@@ -8,9 +8,9 @@ import java.text.ParseException;
  */
 public class Country {
 
-    public static String valueOf(BufferedReader bR) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public static String valueOf(BufferedReader bR) {
+//    
+//    }
     /**
      * Код страны.
      */
@@ -65,9 +65,10 @@ public class Country {
         /*
          * TODO(Студент): Реализовать метод valueOf класса Country
          */
-        Country strana;
-        String simbol = ":";
-         String text1 = code + simbol + name;
+
+        Country strana = null;
+        String code = null, name = null;
+        String text1 = code + ":" + name;
         if (text.equals(text1)) // преобразование String в Country
         {
             strana = Country.valueOf(text);
